@@ -31,20 +31,21 @@ project(":asdf-java") {
 
     sourceSets {
         main.java.srcDirs += 'main/java'
-        test.java.srcDirs += 'main/java'
+        test.java.srcDirs += 'test/java'
     }
 
     dependencies {
-        compile "junit:junit:latest.release"
+        testImplementation "junit:junit:latest.release"
     }
 }
 
 project(":asdf-kotlin") {
+    apply plugin: 'java'
     apply plugin: 'kotlin'
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-    compileJava.options.encoding = 'UTF-8'
+//    sourceCompatibility = 1.8
+//    targetCompatibility = 1.8
+//    compileJava.options.encoding = 'UTF-8'
 
     repositories {
         mavenCentral()
@@ -52,7 +53,7 @@ project(":asdf-kotlin") {
 
     sourceSets {
         main.kotlin.srcDirs += 'main/kotlin'
-        test.kotlin.srcDirs += 'main/kotlin'
+        test.kotlin.srcDirs += 'test/kotlin'
     }
 
     compileKotlin {
@@ -67,9 +68,42 @@ project(":asdf-kotlin") {
     }
 
     dependencies {
-        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-        compile "junit:junit:latest.release"
-        testCompile "org.jetbrains.kotlin:kotlin-test"
-        testCompile "org.jetbrains.kotlin:kotlin-test-junit"
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+        testImplementation "org.jetbrains.kotlin:kotlin-test"
+        testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
+    }
+}
+
+project(":asdf-scala") {
+    apply plugin: 'scala'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    compileScala {
+        scalaCompileOptions.with {
+            encoding = "UTF-8"
+        }
+    }
+
+    compileTestScala {
+        scalaCompileOptions.with {
+            encoding = "UTF-8"
+        }
+    }
+
+    sourceSets {
+        main.scala.srcDirs += 'main/scala'
+        test.scala.srcDirs += 'test/scala'
+    }
+
+    dependencies {
+        implementation "org.scala-lang:scala-library:2.13.2"
+        testImplementation "org.scalatest:scalatest_2.13:3.1.1"
     }
 }

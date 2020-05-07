@@ -11,4 +11,5 @@ rootProject.name = 'asdf'
 
 include 'java'
 include 'kotlin'
+include 'scala'
 rootProject.children.each {it.name="${rootProject.name}-${it.name}"}
