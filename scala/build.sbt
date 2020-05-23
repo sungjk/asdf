@@ -11,6 +11,13 @@ lazy val tagless = (project in file("tagless"))
 	)
     .settings(commonSettings)
 
+lazy val lang = (project in file("lang"))
+	.settings(
+		name := "scala-lang",
+		version := "0.0.1"
+	)
+    .settings(commonSettings)
+
 lazy val commonSettings = Seq(
 	scalaVersion := "2.13.2",
 	scalacOptions ++= Seq(
